@@ -21,7 +21,7 @@ app.put('/piercings/:id', (req, res) => {
   const { id } = req.params
   res.json({
     message: 'Updating piercing',
-    piercing: { id: id, name: 'Updated piercing' }
+    piercing: { id: id, name: 'Updated piercing'}
   })
 })
 
