@@ -6,7 +6,7 @@ app.get('/', (req, res) => {
   res.send({ message: 'Welcome to the Piercings Store!' })
 })
 
-app.get('/piercings', (req, res) => {
+app.get('/piercings?', (req, res) => {
   res.json({ message: 'Listing all the piercings', piercings: [] })
 })
 
