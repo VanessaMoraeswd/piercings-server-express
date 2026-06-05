@@ -21,13 +21,26 @@ app.put('/piercings/:id', (req, res) => {
   const { id } = req.params
   res.json({
     message: 'Updating piercing',
-    piercing: { id: id, name: 'Updated piercing'}
+    piercing: { id: id, name: 'Updated piercing' }
   })
 })
 
 app.delete('/piercings/:id', (req, res) => {
   const { id } = req.params
   res.json({ message: 'Deleting the piercing', piercingId: id })
+})
+
+const checkAuth = (req, res, next) => {
+  const authenticated = true
+  if (authenticated) {
+    next()
+  } else {
+    res.status(401).json({ message: 'Acess denied' })
+  }
+}
+
+app.get('dashboard', checkAuth, (req, res) => {
+  res.json({ message: 'Welcome to the panel' })
 })
 
 app.listen(PORT, () => {
