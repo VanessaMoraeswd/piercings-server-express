@@ -24,6 +24,9 @@ Content-Type: application/json
 ### Delete a piercing by ID
 DELETE {{baseURL}}/piercings/1
 
+### Dashboard route test
+GET {{baseURL}}/dashboard
+
 
 
 

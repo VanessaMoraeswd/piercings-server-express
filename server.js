@@ -6,7 +6,7 @@ app.get('/', (req, res) => {
   res.send({ message: 'Welcome to the Piercings Store!' })
 })
 
-app.get('/piercings?', (req, res) => {
+app.get(['/piercing', '/piercings'], (req, res) => {
   res.json({ message: 'Listing all the piercings', piercings: [] })
 })
 
@@ -35,7 +35,7 @@ const checkAuth = (req, res, next) => {
   if (authenticated) {
     next()
   } else {
-    res.status(401).json({ message: 'Acess denied' })
+    res.status(401).json({ message: 'Access denied' })
   }
 }
 
