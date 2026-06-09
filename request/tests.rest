@@ -27,6 +27,11 @@ DELETE {{baseURL}}/piercings/1
 ### Dashboard route test
 GET {{baseURL}}/dashboard
 
+### GET route test
+GET http://localhost:3001/
+
+### route GET /about test
+GET http://localhost:3001/about
 
 
 
