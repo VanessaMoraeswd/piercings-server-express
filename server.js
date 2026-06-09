@@ -68,3 +68,12 @@ const checkAccess = (req, res, next) => {
 app.get('/profile', checkAccess, (req, res) => {
   res.json({ message: 'Profile Page' })
 })
+
+app.use(express.json())
+
+app.use(express.urlencoded({ extended: true }))
+
+app.post('/users', (req, res) => {
+  const { name, email } = req.body
+  res.json({ message: `User ${name} with email ${email} created` })
+})
