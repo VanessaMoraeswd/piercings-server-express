@@ -55,3 +55,16 @@ app.listen(PORT, () => {
 app.get('/about', (req, res) => {
   res.send({ message: 'Meet the Piercing Store' })
 })
+
+const checkAccess = (req, res, next) => {
+  const authorized = true
+  if (authorized) {
+    next()
+  } else {
+    res.status(403).json({ message: 'Access to profile denied' })
+  }
+}
+
+app.get('/profile', checkAccess, (req, res) => {
+  res.json({ message: 'Profile Page' })
+})
