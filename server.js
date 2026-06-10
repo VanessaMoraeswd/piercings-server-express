@@ -2,8 +2,13 @@ const express = require('express')
 const morgan = require('morgan')
 const app = express()
 const PORT = 3001
+let piercingsDatabase = []
 
 app.use(morgan('dev'))
+
+app.use(express.json())
+
+app.use(express.urlencoded({ extended: true }))
 
 app.use((req, res, next) => {
   console.log(`${req.method} - ${req.url}`)
@@ -15,13 +20,31 @@ app.get('/', (req, res) => {
 })
 
 app.get(['/piercing', '/piercings'], (req, res) => {
-  res.json({ message: 'Listing all the piercings', piercings: [] })
+  // res.json({ message: 'Listing all the piercings', piercings: [] })
+  res.json(piercingsDatabase)
 })
 
-app.post('/piercings', (req, res) => {
-  res.json({
+// app.post('/piercings', (req, res) => {
+//   res.json({
+//     message: 'Creating a new piercing',
+//     piercing: { id: Date.now(), name: 'Piercing A' }
+//   })
+// })
+
+app.post(['/piercing', '/piercings'], (req, res) => {
+  const { name, price } = req.body
+
+  const newPiercing = {
+    id: Date.now(),
+    name: name,
+    price: price
+  }
+
+  piercingsDatabase.push(newPiercing)
+
+  res.status(201).json({
     message: 'Creating a new piercing',
-    piercing: { id: Date.now(), name: 'Piercing A' }
+    piercing: newPiercing
   })
 })
 
@@ -71,10 +94,6 @@ const checkAccess = (req, res, next) => {
 app.get('/profile', checkAccess, (req, res) => {
   res.json({ message: 'Profile Page' })
 })
-
-app.use(express.json())
-
-app.use(express.urlencoded({ extended: true }))
 
 app.post('/users', (req, res) => {
   const { name, email } = req.body

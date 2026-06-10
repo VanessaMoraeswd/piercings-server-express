@@ -4,12 +4,12 @@
 GET {{baseURL}}/piercings
 
 ### Create a new piercing
-POST {{baseURL}}/piercings
+POST {{baseURL}}/piercing
 Content-Type: application/json
 
 {
-  "name": "New piercing",
-  "price": 1800.0
+  "name": "Diamond piercing 2",
+  "price": 5180000.0
 }
 
 ### Update a piercing by ID
